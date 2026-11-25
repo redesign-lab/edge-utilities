@@ -554,7 +554,7 @@ ol {
 }
 
 .hero-copy {
-  max-width: 660px;
+  max-width: 720px;
 }
 
 .eyebrow-tag {
@@ -583,17 +583,17 @@ ol {
   flex-shrink: 0;
 }
 
-/* Layered Multi-Tone Display Heading — Bigger & Bolder */
+/* Layered Multi-Tone Display Heading — Larger & Extra Bold */
 .hero-title {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
   color: #FFFFFF;
-  font-size: clamp(2.2rem, 6vw, 3.7rem);
+  font-size: clamp(2.5rem, 7vw, 4.25rem);
   font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  text-shadow: 0 3px 22px rgba(0, 0, 0, 0.35);
+  line-height: 1.03;
+  letter-spacing: -0.032em;
+  text-shadow: 0 4px 26px rgba(0, 0, 0, 0.42);
   margin-bottom: 18px;
 }
 
@@ -610,44 +610,52 @@ ol {
   font-size: clamp(0.98rem, 1.35vw, 1.12rem);
   line-height: 1.62;
   color: #D7E3F0;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
   max-width: 55ch;
 }
 
-/* Quick Division Jump Pills (Shown Tablet/Desktop; Hidden on Mobile to Reduce Hero Clutter) */
+/* Quick Division Jump Pills (2x2 Grid Under CTA on Mobile; 4-Column Row on Desktop) */
 .hero-division-pills {
-  display: none;
-  grid-template-columns: repeat(2, 1fr);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
-  margin-bottom: 22px;
-  max-width: 540px;
+  margin-top: 20px;
+  max-width: 560px;
 }
 
 .hero-div-pill {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  min-height: 38px;
-  padding: 6px 11px;
-  background-color: rgba(19, 35, 56, 0.85);
-  border: 1px solid rgba(116, 185, 255, 0.28);
+  gap: 7px;
+  min-height: 40px;
+  padding: 7px 10px;
+  background-color: rgba(14, 27, 42, 0.86);
+  border: 1px solid rgba(116, 185, 255, 0.34);
+  border-left: 3px solid var(--brand-amber);
   border-radius: var(--radius-xs);
   font-family: var(--font-display);
   font-size: 12.5px;
   font-weight: 700;
-  color: #EBF3FB;
+  color: #F0F6FC;
   transition: border-color var(--transition), background-color var(--transition);
 }
 
 .hero-div-pill:hover {
   border-color: var(--brand-sky);
-  background-color: rgba(68, 117, 203, 0.32);
+  background-color: rgba(68, 117, 203, 0.34);
 }
 
 .pill-code {
   font-size: 11px;
   font-weight: 800;
   color: var(--brand-amber);
+  flex-shrink: 0;
+}
+
+.pill-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .hero-cta-group {
@@ -2115,7 +2123,8 @@ ol {
   }
 
   .hero-division-pills {
-    display: grid;
+    grid-template-columns: repeat(4, auto);
+    max-width: none;
   }
 
   .hero-credentials {
@@ -2197,7 +2206,7 @@ ol {
   }
 
   .hero-title {
-    font-size: clamp(2.85rem, 4.1vw, 3.75rem);
+    font-size: clamp(3.25rem, 4.6vw, 4.25rem);
   }
 
   .hero-division-pills {
