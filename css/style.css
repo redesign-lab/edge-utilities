@@ -589,7 +589,7 @@ ol {
   flex-direction: column;
   gap: 4px;
   color: #FFFFFF;
-  font-size: clamp(2.5rem, 7vw, 4.25rem);
+  font-size: clamp(2.5rem, 7vw, 3.2rem);
   font-weight: 800;
   line-height: 1.03;
   letter-spacing: -0.032em;
