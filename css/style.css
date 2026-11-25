@@ -583,16 +583,17 @@ ol {
   flex-shrink: 0;
 }
 
-/* Layered Multi-Tone Display Heading */
+/* Layered Multi-Tone Display Heading — Bigger & Bolder */
 .hero-title {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px;
   color: #FFFFFF;
-  font-size: clamp(1.85rem, 4.2vw, 3.2rem);
+  font-size: clamp(2.2rem, 6vw, 3.7rem);
   font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.025em;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-shadow: 0 3px 22px rgba(0, 0, 0, 0.35);
   margin-bottom: 18px;
 }
 
@@ -606,16 +607,16 @@ ol {
 }
 
 .hero-subtitle {
-  font-size: clamp(0.96rem, 1.35vw, 1.1rem);
+  font-size: clamp(0.98rem, 1.35vw, 1.12rem);
   line-height: 1.62;
   color: #D7E3F0;
-  margin-bottom: 20px;
-  max-width: 56ch;
+  margin-bottom: 24px;
+  max-width: 55ch;
 }
 
-/* Quick Division Jump Pills */
+/* Quick Division Jump Pills (Shown Tablet/Desktop; Hidden on Mobile to Reduce Hero Clutter) */
 .hero-division-pills {
-  display: grid;
+  display: none;
   grid-template-columns: repeat(2, 1fr);
   gap: 8px;
   margin-bottom: 22px;
@@ -656,8 +657,9 @@ ol {
   max-width: 440px;
 }
 
-/* Hero Contractor Profile Card */
+/* Hero Contractor Profile Card (Desktop Only — Keeps Mobile Clean & Focused) */
 .hero-spec-card {
+  display: none;
   background-color: rgba(11, 22, 35, 0.90);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(116, 185, 255, 0.28);
@@ -730,8 +732,9 @@ ol {
   color: #9BB7D4;
 }
 
-/* Bottom Verified Credential Strip */
+/* Bottom Verified Credential Strip (Hidden on Mobile < 768px for Clean Above-the-Fold Hero) */
 .hero-credentials {
+  display: none;
   position: relative;
   z-index: 1;
   background-color: #09131E;
@@ -1936,7 +1939,7 @@ ol {
   background-color: var(--brand-navy);
   color: #B4C6DA;
   font-size: 12px;
-  padding-block: 14px;
+  padding-block: 16px 84px;
 }
 
 .footer-bottom-inner {
@@ -1949,8 +1952,8 @@ ol {
 /* Toast Notification */
 .toast {
   position: fixed;
-  right: 16px;
-  bottom: 16px;
+  left: 16px;
+  bottom: calc(74px + env(safe-area-inset-bottom, 0px));
   z-index: 200;
   padding: 12px 18px;
   background-color: var(--brand-navy);
@@ -1960,6 +1963,92 @@ ol {
   box-shadow: 0 12px 28px rgba(14, 27, 42, 0.25);
   font-size: 13.5px;
   font-weight: 600;
+}
+
+/* ==========================================================================
+   Sleek Floating Action Dock
+   ========================================================================== */
+.floating-dock {
+  position: fixed;
+  right: 16px;
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  z-index: 95;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px;
+  background-color: rgba(14, 27, 42, 0.94);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(77, 147, 211, 0.42);
+  border-radius: 999px;
+  box-shadow: 0 14px 34px rgba(9, 19, 30, 0.36);
+}
+
+.floating-call-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 40px;
+  padding: 4px 16px 4px 5px;
+  background-color: var(--brand-amber);
+  color: #0B1624;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+.floating-call-pill:hover {
+  background-color: var(--brand-amber-hover);
+  transform: translateY(-1px);
+}
+
+.floating-call-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #0E1B2A;
+  color: var(--brand-amber);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.floating-call-text-full {
+  display: none;
+}
+
+.floating-call-text-short {
+  display: inline;
+}
+
+.floating-scope-btn,
+.floating-top-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #E2ECF7;
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.floating-scope-btn:hover,
+.floating-top-btn:hover {
+  background-color: var(--brand-cobalt);
+  border-color: var(--brand-sky);
+  color: #FFFFFF;
+}
+
+.floating-top-btn[hidden] {
+  display: none;
 }
 
 /* ==========================================================================
@@ -1978,6 +2067,14 @@ ol {
 
   .scope-inputs-row {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .floating-call-text-full {
+    display: inline;
+  }
+
+  .floating-call-text-short {
+    display: none;
   }
 }
 
@@ -2017,6 +2114,14 @@ ol {
     display: none;
   }
 
+  .hero-division-pills {
+    display: grid;
+  }
+
+  .hero-credentials {
+    display: block;
+  }
+
   .hero-scrim {
     background: linear-gradient(
       95deg,
@@ -2045,6 +2150,10 @@ ol {
     grid-column: 1 / -1;
     padding-top: 22px;
     border-top: 1px solid var(--border-subtle);
+  }
+
+  .footer-bottom {
+    padding-block: 18px 72px;
   }
 
   .footer-bottom-inner {
@@ -2081,6 +2190,14 @@ ol {
   .hero-layout {
     grid-template-columns: 1.28fr 0.72fr;
     gap: 40px;
+  }
+
+  .hero-spec-card {
+    display: block;
+  }
+
+  .hero-title {
+    font-size: clamp(2.85rem, 4.1vw, 3.75rem);
   }
 
   .hero-division-pills {

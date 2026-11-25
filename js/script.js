@@ -4,18 +4,29 @@
   const header = document.getElementById('site-header');
   const menuToggle = document.getElementById('menu-toggle');
   const mobileNav = document.getElementById('mobile-nav');
+  const scrollTopBtn = document.getElementById('scroll-top-btn');
   const toastEl = document.getElementById('copy-toast');
   let toastTimer = null;
 
   /* ------------------------------------------------------------------------
-     Sticky Header Scroll State
+     Sticky Header Scroll State & Floating Top Button
      ------------------------------------------------------------------------ */
   const updateHeaderState = () => {
-    if (!header) return;
-    header.classList.toggle('is-scrolled', window.scrollY > 10);
+    if (header) {
+      header.classList.toggle('is-scrolled', window.scrollY > 10);
+    }
+    if (scrollTopBtn) {
+      scrollTopBtn.hidden = window.scrollY < 320;
+    }
   };
   window.addEventListener('scroll', updateHeaderState, { passive: true });
   updateHeaderState();
+
+  if (scrollTopBtn) {
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
   /* ------------------------------------------------------------------------
      Mobile Navigation Drawer
