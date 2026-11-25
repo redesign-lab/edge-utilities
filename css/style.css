@@ -2206,7 +2206,7 @@ ol {
   }
 
   .hero-title {
-    font-size: clamp(3.25rem, 4.6vw, 4.25rem);
+    font-size: clamp(2.69rem, 4.2vw, 3.2rem);
   }
 
   .hero-division-pills {
