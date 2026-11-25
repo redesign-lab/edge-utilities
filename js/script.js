@@ -52,7 +52,7 @@
   }
 
   /* ------------------------------------------------------------------------
-     Toast Feedback Helper
+     Toast Feedback & Clipboard Helper
      ------------------------------------------------------------------------ */
   const showToast = (message) => {
     if (!toastEl) return;
@@ -123,6 +123,107 @@
     link.addEventListener('click', () => {
       const div = link.getAttribute('data-filter-trigger');
       if (div) applyDivisionFilter(div);
+    });
+  });
+
+  /* ------------------------------------------------------------------------
+     Process Stepper Tabs (Mobile & Tablet Interactive View)
+     ------------------------------------------------------------------------ */
+  const stepTabs = document.querySelectorAll('.step-tab[data-step]');
+  const stepPanels = document.querySelectorAll('.process-step[data-step-panel]');
+
+  const selectStep = (stepNum) => {
+    stepTabs.forEach((tab) => {
+      const active = tab.getAttribute('data-step') === stepNum;
+      tab.classList.toggle('is-active', active);
+      tab.setAttribute('aria-selected', String(active));
+    });
+
+    stepPanels.forEach((panel) => {
+      const active = panel.getAttribute('data-step-panel') === stepNum;
+      panel.classList.toggle('is-active-step', active);
+    });
+  };
+
+  stepTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      selectStep(tab.getAttribute('data-step') || '1');
+    });
+  });
+
+  /* ------------------------------------------------------------------------
+     Interactive Corridor Map & City Selector
+     ------------------------------------------------------------------------ */
+  const CORRIDOR_DATA = {
+    hattiesburg: {
+      name: 'Hattiesburg & Oak Grove Dispatch Hub',
+      route: 'I-59 · US-49 · US-98 Hub',
+      desc: 'Home yard and office at 52 Cherry Laurel Loop (Lamar County) supporting municipal public works, commercial developments, and regional utility districts.'
+    },
+    petal: {
+      name: 'Petal & Forrest County Corridor',
+      route: 'US-42 · Evelyn Gandy Pkwy',
+      desc: 'Direct access across the Leaf River into Petal and Forrest County for municipal water mains, sanitary sewer upgrades, and storm drainage.'
+    },
+    purvis: {
+      name: 'Purvis, Lumberton & South I-59',
+      route: 'I-59 South · US-11 Corridor',
+      desc: 'Serving Lamar and Pearl River County utility associations, rural waterline extensions, and trenchless highway directional bores.'
+    },
+    laurel: {
+      name: 'Laurel & Jones County (I-59 North)',
+      route: 'I-59 North · US-84',
+      desc: 'Mobilizing excavation iron and pipe crews north along I-59 for municipal distribution loops, sewer force mains, and lift stations.'
+    },
+    columbia: {
+      name: 'Columbia, Sumrall & US-98 West',
+      route: 'US-98 West · MS-13',
+      desc: 'Supporting Marion County and western Lamar County water system improvements, ARPA utility contracts, and HDPE road crossings.'
+    },
+    wiggins: {
+      name: 'Wiggins, Stone County & US-49 South',
+      route: 'US-49 South Corridor',
+      desc: 'Rapid heavy-civil dispatch south along Highway 49 for municipal sewer, commercial site drainage, and long-run directional boring.'
+    }
+  };
+
+  const corridorChips = document.querySelectorAll('.corridor-chip[data-corridor]');
+  const mapNodes = document.querySelectorAll('.map-node[data-corridor]');
+  const corridorNameEl = document.getElementById('corridor-name');
+  const corridorRouteEl = document.getElementById('corridor-route');
+  const corridorDescEl = document.getElementById('corridor-desc');
+
+  const selectCorridor = (key) => {
+    const info = CORRIDOR_DATA[key];
+    if (!info) return;
+
+    corridorChips.forEach((chip) => {
+      chip.classList.toggle('is-active', chip.getAttribute('data-corridor') === key);
+    });
+    mapNodes.forEach((node) => {
+      node.classList.toggle('is-active', node.getAttribute('data-corridor') === key);
+    });
+
+    if (corridorNameEl) corridorNameEl.textContent = info.name;
+    if (corridorRouteEl) corridorRouteEl.textContent = info.route;
+    if (corridorDescEl) corridorDescEl.textContent = info.desc;
+  };
+
+  corridorChips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      selectCorridor(chip.getAttribute('data-corridor') || 'hattiesburg');
+    });
+  });
+
+  mapNodes.forEach((node) => {
+    node.addEventListener('click', () => {
+      selectCorridor(node.getAttribute('data-corridor') || 'hattiesburg');
+    });
+    node.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        selectCorridor(node.getAttribute('data-corridor') || 'hattiesburg');
+      }
     });
   });
 
