@@ -587,27 +587,17 @@ ol {
 .hero-title {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
   color: #FFFFFF;
-  font-size: clamp(1.95rem, 4.7vw, 3.45rem);
+  font-size: clamp(1.85rem, 4.2vw, 3.2rem);
   font-weight: 800;
-  line-height: 1.07;
-  letter-spacing: -0.028em;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
   margin-bottom: 18px;
-}
-
-.hero-title-kicker {
-  font-size: clamp(0.88rem, 1.4vw, 1.08rem);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: #BBD4EE;
-  margin-bottom: 4px;
 }
 
 .hero-title-accent {
   color: var(--brand-sky);
-  position: relative;
   display: inline-block;
 }
 
